@@ -15,7 +15,8 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    //private UnitOfMeasure uom;
+    @OneToOne(fetch = FetchType.EAGER) //I want hibernate to fetch this OneToOne to get from database every time
+    private UnitOfMeasure uom;
 
     @ManyToOne //no cascade here, because we don't want to delete a parent recipe object, when ingredient is deleted
     private Recipe recipe;
@@ -50,5 +51,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
