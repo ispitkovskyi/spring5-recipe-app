@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by igors on 9/18/22
@@ -21,6 +22,10 @@ public class Recipe {
     private String directions;
     //todo add
     //private Difficulty difficulty;
+
+    //"mappedBy" means that there will be a "recipe" property inside each object of Ingredient class from the Set
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     @Lob //JPA will create this as a BLOB field inside a database
     private Byte[] image;
