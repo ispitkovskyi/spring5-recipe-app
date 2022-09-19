@@ -42,6 +42,14 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL) //Cascade means, that if we delete Recipe, it automatically will delete related Notes
     private Notes notes;
 
+    @ManyToMany
+    @JoinTable(name = "recipe_category", //table will be created with name "RECIPE_CATEGORY" joining below columns
+        joinColumns = @JoinColumn(name = "recipe_id"), //From this side of the relationship we'll have column RECIPE_ID
+            inverseJoinColumns = @JoinColumn(name = "category_id")) //on the other side (on Categories id) we'll have CATEGORY_ID
+    //NOTE, you can see names of id-columns ("recipe_id", "category_id" using H2 db web console: http://localhost:8080/h2-console
+    //RECIPE_CATEGORY table will be created in the DB
+    private Set<Category> categories;
+
     public Long getId() {
         return id;
     }
@@ -136,5 +144,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
