@@ -24,9 +24,6 @@ public class Recipe {
     @Lob
     private String directions;
 
-    //todo add
-    //private Difficulty difficulty;
-
     //"mappedBy" means that there will be a "recipe" property inside each object of Ingredient class from the Set
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
