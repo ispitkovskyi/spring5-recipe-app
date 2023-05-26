@@ -25,7 +25,9 @@ public class Recipe {
     private String directions;
 
     /**
-     * "mappedBy" means that there will be a "recipe" property inside each object of Ingredient class from the Set
+     * "mappedBy" defines relationship:    FROM Recipe TO Ingredient
+     * mappedBy = "recipe" means that there will be "recipe" property (variable) inside Ingredient class
+     * all the ingredients coming back will be stored inside the Set
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();

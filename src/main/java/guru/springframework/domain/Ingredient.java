@@ -18,7 +18,10 @@ public class Ingredient {
     @OneToOne(fetch = FetchType.EAGER) //I want hibernate to fetch this OneToOne to get from database every time
     private UnitOfMeasure uom;
 
-    @ManyToOne //no cascade here, because we don't want to delete a parent recipe object, when ingredient is deleted
+    /**
+     * no cascade here, because we don't want to delete a parent recipe object, when ingredient is deleted
+     */
+    @ManyToOne
     private Recipe recipe;
 
     public Ingredient() {
