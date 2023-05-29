@@ -15,7 +15,15 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @OneToOne(fetch = FetchType.EAGER) //I want hibernate to fetch this OneToOne to get from database every time
+    /**
+     * Because we dot NOT need to go FROM a UnitOfMeasure to Ingredient - this is a UNIDIRECTIONAL relationship,
+     * which means we do NOT set @OneToOne annotation over "recipe" property in the UnitOfMeasure
+     *
+     * FetchType.EAGER makes Hibernate fetching this OneToOne to get from database every time
+     *
+     * No CASCADE operations here, because we do NOT want to delete a UnitOfMeasure, when we delete an ingredient
+     */
+    @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
 
     /**
