@@ -61,8 +61,9 @@ public class Recipe {
      * By default the Springboot creates 2 tables in the DB:  CATEGORY_RECIPES and RECIPE_CATEGORIES, which is NOT what we need
      * To fis this, we need to configure Springboot to create a single table, joining the aforementioned tables by
      * "recipe_id" and "category_id" fields.
-     * That will create a single RECIPE_CATEGORY table (as it's name is specified in "name" attribute of @JoinTable annotation),
-     * instead of two tables - "recipe_category"
+     * That will create a single RECIPE_CATEGORY table (as it's name is specified in "name" attribute of @JoinTable annotation -
+     * instead of two tables - "recipe_category"). And this table will have 2 columns "RECIPE_ID", "CATEGORY_ID" (as it is
+     * specified in "joinColumns" attributes.
      *
      * NOTE, you can see names of id-columns ("recipe_id", "category_id" using H2 db web console: http://localhost:8080/h2-console
      * H2 db credentials:
