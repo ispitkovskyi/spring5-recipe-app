@@ -57,12 +57,23 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
+    /**
+     * By default the Springboot creates 2 tables in the DB:  CATEGORY_RECIPES and RECIPE_CATEGORIES, which is NOT what we need
+     * To fis this, we need to configure Springboot to create a single table, joining the aforementioned tables by
+     * "recipe_id" and "category_id" fields.
+     * That will create a single RECIPE_CATEGORY table (as it's name is specified in "name" attribute of @JoinTable annotation),
+     * instead of two tables - "recipe_category"
+     *
+     * NOTE, you can see names of id-columns ("recipe_id", "category_id" using H2 db web console: http://localhost:8080/h2-console
+     * H2 db credentials:
+     *  jdbc:h2:mem:testdbd
+     *  [user "sa"]
+     *  [empty password]
+     */
     @ManyToMany
     @JoinTable(name = "recipe_category", //table will be created with name "RECIPE_CATEGORY" joining below columns
         joinColumns = @JoinColumn(name = "recipe_id"), //From this side of the relationship we'll have column RECIPE_ID
             inverseJoinColumns = @JoinColumn(name = "category_id")) //on the other side (on Categories id) we'll have CATEGORY_ID
-    //NOTE, you can see names of id-columns ("recipe_id", "category_id" using H2 db web console: http://localhost:8080/h2-console
-    //RECIPE_CATEGORY table will be created in the DB
     private Set<Category> categories = new HashSet<>();
 
     public Long getId() {

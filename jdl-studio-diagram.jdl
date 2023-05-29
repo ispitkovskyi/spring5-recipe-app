@@ -1,51 +1,56 @@
 //Paste the code to https://start.jhipster.tech/jdl-studio/
 
 entity Recipe {
-  prepTime Integer,
-  cookTime Integer,
-  servings Integer,
-  source String,
-  url String,
-  directions String,
-  difficulty Difficulty,
-  image Byte
+	prepTime Integer,
+    cookTime Integer,
+    servings Integer,
+    source String,
+    url String,
+    directions String,
+    difficulty Difficulty,
+    image Byte
 }
 
 entity Category {
-  departmentName String required
+	departmentName String required
 }
 
 entity Ingredient {
-  description String,
-  amount BigDecimal
+	description String,
+    amount BigDecimal
 }
 
 entity UnitOfMeasure {
-  uom String
+	uom String
 }
 
 entity Notes {
-  notes String
+	notes String
 }
 
 enum Difficulty {
-  EASY, MODERATE, HARD
+	EASY, MODERATE, HARD
 }
 
 relationship OneToOne {
-  Recipe to Notes
-  Ingredient to UnitOfMeasure
-  Recipe to Difficulty
+	Recipe to Notes
+    Ingredient to UnitOfMeasure
+    Recipe to Difficulty
 }
 
+relationship ManyToMany{
+	Recipe{recipe} to Category{category}
+}
+
+
 relationship ManyToMany {
-  Recipe to Category
+	Category{category} to Recipe{recipe}
 }
 
 relationship OneToMany{
-  Recipe to Ingredient
+	Recipe to Ingredient
 }
 
 relationship ManyToOne{
-  Ingredient to Recipe
+	Ingredient{ingredient} to Recipe{recipe}
 }
