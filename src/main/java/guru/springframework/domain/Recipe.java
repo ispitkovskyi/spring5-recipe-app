@@ -39,7 +39,8 @@ public class Recipe {
     private Byte[] image;
 
     /**
-     * EnumType.ORDINAL - the default behavior, but it means that position of each enumeration value persists in database.
+     * EnumType.ORDINAL - the default behavior (based on ORDER of elements in the enum),
+     * but it means that position of each enumeration value persists in database.
      * So, IF you want to insert another value into the Enum's list of values somewhere in the middle of initial list, like:
      * EASY, MODERATE, HARD --->>> EASY, MODERATE, KIND_OF_HARD, HARD
      * THEN your data will be messed up, because new KIND_OF_HARD value appears at the position #3, where HARD value used to be
