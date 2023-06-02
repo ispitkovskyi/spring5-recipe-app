@@ -20,7 +20,11 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
-
+    /**
+     * JPA will create this as a BLOB (Bytes LOB) field inside a database
+     */
+    @Lob
+    private Byte[] image;
     @Lob
     private String directions;
 
@@ -32,11 +36,6 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 
-    /**
-     * JPA will create this as a BLOB (Bytes LOB) field inside a database
-     */
-    @Lob
-    private Byte[] image;
 
     /**
      * EnumType.ORDINAL - the default behavior (based on ORDER of elements in the enum),
