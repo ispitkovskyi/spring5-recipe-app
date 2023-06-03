@@ -181,9 +181,13 @@ public class Recipe {
         return notes;
     }
 
+    /**
+     * BIDIRECTIONAL RELATIONSHIP: sets vice versa, id of Recipe into ID column in NOTES table
+     * @param notes
+     */
     public void setNotes(Notes notes) {
         this.notes = notes;
-        notes.setRecipe(this); //sets vice versa, id of Recipe into ID column in NOTES table
+        notes.setRecipe(this);
     }
 
     public Set<Category> getCategories() {

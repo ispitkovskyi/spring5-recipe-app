@@ -135,7 +135,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
 
-        /**
+        /** BIDIRECTIONAL RELATIONSHIP
          * This method "setNotes" sets ID of Notes instance into NOTES column of RECIPE table, AND in turn contains additional logic
          * which sets "recipe" for the Notes instance, to make sure that NOTES table will contain ID of recipes in its RECIPE column
          */
@@ -194,15 +194,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
 
-        /**
-         * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
-         * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
-         */
-        tacoNotes.setRecipe(tacosRecipe);
-
+        //BIDIRECTIONAL RELATIONSHIP
         tacosRecipe.setNotes(tacoNotes);
 
-        /**
+        /** BIDIRECTIONAL RELATIONSHIP
          * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
          * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
          */
