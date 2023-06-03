@@ -149,6 +149,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    /**
+     * Adds Ingredient to list of ingredients in Recipe, AND
+     * sets id of Recipe into RECIPE_ID column in INGREDIENT table
+     * @param ingredient
+     * @return
+     */
     public Recipe addIngredient(Ingredient ingredient){
         this.ingredients.add(ingredient);
         ingredient.setRecipe(this);
@@ -177,7 +183,7 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
-        notes.setRecipe(this);
+        notes.setRecipe(this); //sets vice versa, id of Recipe into ID column in NOTES table
     }
 
     public Set<Category> getCategories() {
