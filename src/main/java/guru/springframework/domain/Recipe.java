@@ -21,7 +21,8 @@ public class Recipe {
     private String source;
     private String url;
     /**
-     * JPA will create this as a BLOB (Bytes LOB) field inside a database
+     * JPA will create this as a BLOB (Bytes LOB) field inside a database - when more than 256 characters are expected
+     * to be stored in the field
      */
     @Lob
     private Byte[] image;

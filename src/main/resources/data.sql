@@ -1,4 +1,4 @@
-/*This file will be eligible for being picked up by a Springboog (not a Hibernate flavor)*/
+/*This file will be eligible for being picked up by a Springboot (not a Hibernate flavor)*/
 INSERT INTO category (description) VALUES ('American');
 INSERT INTO category (description) VALUES ('Italian');
 INSERT INTO category (description) VALUES ('Mexican');
