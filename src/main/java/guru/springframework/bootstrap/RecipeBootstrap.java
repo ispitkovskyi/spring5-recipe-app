@@ -134,11 +134,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
+
+        /**
+         * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
+         * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
+         */
         guacNotes.setRecipe(guacRecipe);
 
         guacRecipe.setNotes(guacNotes);
 
-        //very redundant - could add helper method, and make this simpler
+        /**
+         * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
+         * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
+         */
         guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), eachUom, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(".5"), teapoonUom, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tableSpoonUom, guacRecipe));
@@ -187,10 +195,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
+
+        /**
+         * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
+         * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
+         */
         tacoNotes.setRecipe(tacosRecipe);
 
         tacosRecipe.setNotes(tacoNotes);
 
+        /**
+         * Make recipe ID appear in Ingredient and Notes records (in INGREDIENT and NOTES tables) by assigning/setting
+         * "recipe" property of Ingredient and Notes instances to corresponding instance of Recipe class
+         */
         tacosRecipe.getIngredients().add(new Ingredient("Ancho Chili Powder", new BigDecimal(2), tableSpoonUom, tacosRecipe));
         tacosRecipe.getIngredients().add(new Ingredient("Dried Oregano", new BigDecimal(1), teapoonUom, tacosRecipe));
         tacosRecipe.getIngredients().add(new Ingredient("Dried Cumin", new BigDecimal(1), teapoonUom, tacosRecipe));
