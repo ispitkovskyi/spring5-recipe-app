@@ -1,11 +1,16 @@
 package guru.springframework.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by igors on 9/19/22
  */
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})   //to avoid java.lang.StackOverflowError: null
 @Entity
 public class Category {
     @Id
@@ -16,27 +21,4 @@ public class Category {
     @ManyToMany(mappedBy = "categories") //"categories" - is name of variable in Recipe class, where mapping to Category is defined
     private Set<Recipe> recipes;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String categoryName) {
-        this.description = categoryName;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }

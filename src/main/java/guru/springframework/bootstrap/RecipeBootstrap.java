@@ -4,10 +4,12 @@ import guru.springframework.domain.*;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.Optional;
  * Notice that, we can also have the event triggered manually by calling the refresh() method on the
  * ConfigurableApplicationContext interface.
  */
+@Slf4j //It's a Lombok-provided facade, which provides access to the Bootstrap's default "LogBack" logger
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -38,7 +41,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional //to avoid "org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: guru.springframework.domain.Category.recipes, could not initialize proxy - no Session"
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("##################  Loading Bootstrap Data ##################");
         recipeRepository.saveAll(getRecipes());
     }
 
@@ -46,6 +51,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         List<Recipe> recipes = new ArrayList<>(2);
 
+        log.debug("################## Finding unit of measure records in DB ##################");
         //get UOMs from DB
         Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
 
@@ -91,6 +97,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         UnitOfMeasure pintUom = dashUomOptional.get();
         UnitOfMeasure cupsUom = cupsUomOptional.get();
 
+        log.debug("################## Getting Category objects from DB ##################");
         //get Categories from DB
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
 
@@ -107,6 +114,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Category americanCategory = americanCategoryOptional.get();
         Category mexicanCategory = mexicanCategoryOptional.get();
 
+        log.debug("################## Create a Guacamole recipe ##################");
         //Yummy Guac
         Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
@@ -164,6 +172,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         //add to return list
         recipes.add(guacRecipe);
 
+        log.debug("################## Create a Taco recipe ##################");
         //Yummy Tacos
         Recipe tacosRecipe = new Recipe();
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
