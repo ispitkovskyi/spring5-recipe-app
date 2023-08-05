@@ -45,7 +45,10 @@ public class RecipeServiceImplTest {
         assertEquals(1, recipes.size());
         /**Use Mockito to verify that recipeRepository instance will be used only 1 time
         * (when recipeService.getRecipes() is called above)
-        */
+
+         IMPORTANT!!!:  the "findAll()" here is actually the NAME OF THE METHOD called inside the recipeRepository instance
+            so, FORE EVERY OTHER INSTANCE TYPE THERE WILL BE NAME OF METHOD FROM THE CLASS IF THIS INSTANCE BEING VERIFIED
+         */
         verify(recipeRepository, times(1)).findAll();
     }
 }
