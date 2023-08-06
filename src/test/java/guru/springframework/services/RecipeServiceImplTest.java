@@ -38,7 +38,6 @@ public class RecipeServiceImplTest {
         /** When recipeRepository.findAll() is called (it happens inside recipeService.getRecipes() method call)
          * Then return the recipesData hashset
          */
-
         when(recipeRepository.findAll()).thenReturn(recipesData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
