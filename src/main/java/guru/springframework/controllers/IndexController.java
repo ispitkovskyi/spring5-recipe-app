@@ -24,6 +24,7 @@ public class IndexController {
         log.debug("The index page controller method");
         model.addAttribute("recipes", recipeService.getRecipes());
 
+        //return relative path to the new index.html
         return "index";
     }
 }
