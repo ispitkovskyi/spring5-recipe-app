@@ -11,6 +11,8 @@ You can learn about my Spring Framework 5 Online course [here.](https://go.sprin
 By default, data.sql scripts get executed before the Hibernate is initialized. When we run the project with this file on the classpath, Spring will pick it up and use it to populate the data.
 ####Default implementation of CrudRepository<Category, Long>
 Ability to manipulate with data in H2 database
+####Spring Data JPA Query Methods in repository classes
+Like findBy... methods in CategoryRepository and UnitOfMeasureRepository classes
 ####Relationships between entities (one-to-one, one-to-many, many-to-one, many-to-many)
 ####Unit tests
 ####Integration tests
@@ -26,3 +28,4 @@ These attributes then accessible to the Thymeleaf in .html templates
                                         th:text="${ingredient.getAmount() +'
                                         ' ' + ingredient.uom.getDescription() +'
                                         ' - ' + ingredient.getDescription()}">1 Teaspoon of Sugar\</li\>"
+####Binding data to POJO in Spring   
