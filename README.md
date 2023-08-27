@@ -26,4 +26,3 @@ These attributes then accessible to the Thymeleaf in .html templates
                                         th:text="${ingredient.getAmount() +'
                                         ' ' + ingredient.uom.getDescription() +'
                                         ' - ' + ingredient.getDescription()}">1 Teaspoon of Sugar\</li\>"
- -   
