@@ -1,5 +1,7 @@
 package guru.springframework.services;
 
+import guru.springframework.converters.RecipeCommandToRecipe;
+import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 import org.junit.Before;
@@ -22,13 +24,17 @@ public class RecipeServiceImplTest {
     //Will inject instance of recipeRepository, when MockitoAnnotations.initMocks(this) is called
     @Mock
     RecipeRepository recipeRepository;
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommandConverter;
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipeConveter;
 
 
     @Before
     public void setUp() throws Exception {
         //Triggers injection of @Mock annotated instances
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeToRecipeCommandConverter, recipeCommandToRecipeConveter);
     }
 
     @Test
