@@ -11,6 +11,10 @@ You can learn about my Spring Framework 5 Online course [here.](https://go.sprin
 By default, data.sql scripts get executed before the Hibernate is initialized. When we run the project with this file on the classpath, Spring will pick it up and use it to populate the data.
 ####Default implementation of CrudRepository<Category, Long>
 Ability to manipulate with data in H2 database
+##### H2 db credentials:
+ -  jdbc:h2:mem:testdbd
+ -  [user "sa"]
+ -  [empty password]
 ####Spring Data JPA Query Methods in repository classes
 Like findBy... methods in CategoryRepository and UnitOfMeasureRepository classes
 ####Relationships between entities (one-to-one, one-to-many, many-to-one, many-to-many)
