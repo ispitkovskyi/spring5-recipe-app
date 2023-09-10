@@ -17,19 +17,19 @@
             crossorigin="anonymous" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"></script>
 </head>
 <body>
+<!-- NOTE:
+The comment below is needed for IntelliJ to recognize "recipe" property,
+so Intelli-sense assistant will work for "recipe" property and find all the public members of Recipe type
+working them in this HTML document (works for entire document, not only for a single line below
+-->
+
+<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="pannel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <!-- NOTE:
-                        The comment below is needed for IntelliJ to recognize "recipe" property,
-                        so Intelli-sense assistant will work for "recipe" property and find all the public members of Recipe type
-                        working them in this HTML document (works for entire document, not only for a single line below
-                        -->
-
-                        <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
                         <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
                     </div>
                     <div class="panel-body">
