@@ -28,7 +28,7 @@ public class RecipeController {
      * @param model
      * @return
      */
-    @RequestMapping("/recipe/show/{id}")
+    @RequestMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model){
         //Sets a model-attribute "recipe" found by Id
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
@@ -39,7 +39,14 @@ public class RecipeController {
     public String newRecipe(Model model){
         model.addAttribute("recipe", new RecipeCommand());
 
-        return "recipe/recipeform"; //returns recipeform.html file in the termplates
+        return "recipe/recipeform"; //returns "recipeform.html" file from the templates resource directory "recipe"
+    }
+
+    @RequestMapping("/recipe/{id}/update")
+    public String updateRecipe(@PathVariable String id, Model model){
+        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+
+        return "recipe/recipeform"; //returns "recipeform.html" file from the templates resource directory "recipe"
     }
 
     /**
@@ -55,6 +62,7 @@ public class RecipeController {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
         //Use a redirect to a specific URL which points to the saved recipe object by it's ID
-        return "redirect:/recipe/show/" + savedCommand.getId();
+        return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
+
 }
