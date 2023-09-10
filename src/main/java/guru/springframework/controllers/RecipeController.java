@@ -2,7 +2,6 @@ package guru.springframework.controllers;
 
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.services.RecipeService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by igors on 8/24/23
  */
 @Controller
-@Slf4j
 public class RecipeController {
 
     private final RecipeService recipeService;
 
-    public RecipeController(RecipeService recipeService){
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
@@ -34,11 +32,10 @@ public class RecipeController {
     public String showById(@PathVariable String id, Model model){
         //Sets a model-attribute "recipe" found by Id
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
-
         return "recipe/show"; //return relative path to the new show.html template
     }
 
-    @RequestMapping ("/recipe/new")
+    @RequestMapping("recipe/new")
     public String newRecipe(Model model){
         model.addAttribute("recipe", new RecipeCommand());
 
@@ -53,12 +50,11 @@ public class RecipeController {
      *                th:field="*{prepTime} form attribute will be auto-mapped to the RecipeCommand.prepTime property
      * @return
      */
-    @PostMapping
-    @RequestMapping("recipe")
+    @PostMapping("recipe")
     public String saveOrUpdate(@ModelAttribute RecipeCommand command){
-        RecipeCommand savedRecipe = recipeService.saveRecipeCommand(command);
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
         //Use a redirect to a specific URL which points to the saved recipe object by it's ID
-        return "redirect:/recipe/show/" + savedRecipe.getId();
+        return "redirect:/recipe/show/" + savedCommand.getId();
     }
 }

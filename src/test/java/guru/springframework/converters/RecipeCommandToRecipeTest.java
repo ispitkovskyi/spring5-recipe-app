@@ -62,7 +62,7 @@ public class RecipeCommandToRecipeTest {
 
         NotesCommand notesCommand = new NotesCommand();
         notesCommand.setId(NOTES_ID);
-        recipeCommand.setNotesCommand(notesCommand);
+        recipeCommand.setNotes(notesCommand);
 
         IngredientCommand ingredientCommand1 = new IngredientCommand();
         ingredientCommand1.setId(INGRED_ID_1);
