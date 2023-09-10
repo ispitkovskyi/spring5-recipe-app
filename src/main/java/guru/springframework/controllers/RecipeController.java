@@ -1,10 +1,13 @@
 package guru.springframework.controllers;
 
+import guru.springframework.commands.RecipeCommand;
 import guru.springframework.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,7 +34,31 @@ public class RecipeController {
     public String showById(@PathVariable String id, Model model){
         //Sets a model-attribute "recipe" found by Id
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
-        //return relative path to the new show.html template
-        return "recipe/show";
+
+        return "recipe/show"; //return relative path to the new show.html template
+    }
+
+    @RequestMapping ("/recipe/new")
+    public String newRecipe(Model model){
+        model.addAttribute("recipe", new RecipeCommand());
+
+        return "recipe/recipeform"; //returns recipeform.html file in the termplates
+    }
+
+    /**
+     *
+     * @param command - @ModelAttribute will tell Spring to bind the form-post parameters to RecipeCommand object, the
+     *                binding will happen automatically by the naming convention of the properties we're adding in the form
+     *                for example:
+     *                th:field="*{prepTime} form attribute will be auto-mapped to the RecipeCommand.prepTime property
+     * @return
+     */
+    @PostMapping
+    @RequestMapping("recipe")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+        RecipeCommand savedRecipe = recipeService.saveRecipeCommand(command);
+
+        //Use a redirect to a specific URL which points to the saved recipe object by it's ID
+        return "redirect:/recipe/show/" + savedRecipe.getId();
     }
 }
